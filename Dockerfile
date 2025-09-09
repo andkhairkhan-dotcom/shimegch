@@ -1,24 +1,9 @@
-# Multi-stage build for optimized production image
-FROM maven:3.9.6-openjdk-21-slim AS build
+# Use Eclipse Temurin for better compatibility
+FROM eclipse-temurin:21-jdk
 
-# Set working directory
-WORKDIR /app
-
-# Copy pom.xml and download dependencies
-COPY pom.xml .
-RUN mvn dependency:go-offline -B
-
-# Copy source code
-COPY src ./src
-
-# Build the application
-RUN mvn clean package -DskipTests -Pproduction
-
-# Production stage
-FROM openjdk:21-jdk-slim
-
-# Install fonts for PDF generation
+# Install Maven
 RUN apt-get update && apt-get install -y \
+    maven \
     fontconfig \
     fonts-dejavu-core \
     && rm -rf /var/lib/apt/lists/*
@@ -26,15 +11,15 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy the built jar from build stage
-COPY --from=build /app/target/shimegch-1.0-SNAPSHOT.jar app.jar
+# Copy project files
+COPY pom.xml .
+COPY src ./src
 
-# Create non-root user for security (commented out for Render compatibility)
-# RUN addgroup --system spring && adduser --system spring --ingroup spring
-# USER spring:spring
+# Build the application
+RUN mvn clean package -DskipTests -Pproduction
 
 # Expose port
 EXPOSE 8080
 
 # Run the application
-ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "target/shimegch-1.0-SNAPSHOT.jar"]
