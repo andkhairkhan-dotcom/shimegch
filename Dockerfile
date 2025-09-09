@@ -29,9 +29,9 @@ WORKDIR /app
 # Copy the built jar from build stage
 COPY --from=build /app/target/shimegch-1.0-SNAPSHOT.jar app.jar
 
-# Create non-root user for security
-RUN addgroup --system spring && adduser --system spring --ingroup spring
-USER spring:spring
+# Create non-root user for security (commented out for Render compatibility)
+# RUN addgroup --system spring && adduser --system spring --ingroup spring
+# USER spring:spring
 
 # Expose port
 EXPOSE 8080

@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: shimegch
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: shimegch-db
+          property: connectionString
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+    healthCheckPath: /actuator/health
+
+databases:
+  - name: shimegch-db
+    databaseName: shimegch
+    user: shimegch_user
+    plan: free
