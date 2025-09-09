@@ -1,35 +1,93 @@
-# Shimegch README
+# 🏠 Shimegch - Өрийн мэдээллийн систем
 
-- [ ] TODO Replace or update this README with instructions relevant to your application
+Монгол хэл дээрх өрийн мэдээллийн удирдлагын систем. Excel файлаас өгөгдөл импорт хийж, PDF постер үүсгэх боломжтой.
 
-To start the application in development mode, import it into your IDE and run the `Application` class. 
-You can also start the application from the command line by running: 
+## ✨ Онцлогууд
 
+- 📊 **Excel импорт** - Өрийн мэдээллийг Excel файлаас татаж авах
+- 📄 **PDF постер үүсгэх** - Өр төлөгчдөд зориулсан мэдэгдэл постер
+- 🖼️ **Meme дэмжлэг** - Постер дээр зураг болон emoji харуулах
+- 📱 **Responsive дизайн** - Mobile болон desktop дээр ажиллана
+- 🔍 **Шүүлтүүр** - Байр, орц, давхар, өрийн зэрэглэлээр шүүх
+- 🗄️ **Database** - H2 (development), PostgreSQL (production)
+
+## 🚀 Технологи
+
+- **Backend**: Java 21, Spring Boot 3.5.5
+- **Frontend**: Vaadin 24.8.7
+- **Database**: H2 (dev), PostgreSQL (prod)
+- **PDF**: iText 7
+- **Build**: Maven
+- **Deploy**: Railway + Docker
+
+## 🛠️ Локал дээр ажиллуулах
+
+### Шаардлага
+- Java 21+
+- Maven 3.6+
+
+### Эхлүүлэх
 ```bash
-./mvnw
+# Repository clone хийх
+git clone https://github.com/yourusername/shimegch.git
+cd shimegch
+
+# Dependencies татах
+mvn clean install
+
+# Application эхлүүлэх
+mvn spring-boot:run
 ```
 
-To build the application in production mode, run:
+Дараа нь http://localhost:8080 руу орно.
 
-```bash
-./mvnw -Pproduction package
-```
+## 🌐 Production Deploy
 
-To build a Docker image, run:
+### Railway дээр deploy хийх:
+1. GitHub repository үүсгэх
+2. Railway.app дээр бүртгүүлэх
+3. GitHub repository холбох
+4. PostgreSQL database нэмэх
+5. Auto-deploy тохируулах
 
-```bash
-docker build -t my-application:latest .
-```
+### Environment Variables:
+- `DATABASE_URL` - PostgreSQL холболтын URL
+- `PORT` - Server port (default: 8080)
 
-If you use commercial components, pass the license key as a build secret:
+## 📋 Хэрэглэх заавар
 
-```bash
-docker build --secret id=proKey,src=$HOME/.vaadin/proKey .
-```
+1. **Excel файл upload** - "Өгөгдөл оруулах" хэсэгт Excel файл upload хийнэ
+2. **Өгөгдөл харах** - Үндсэн хуудсанд бүх айлуудын жагсаалт харагдана
+3. **Шүүлтүүр** - "🔍 Шүүлтүүр" товчлуур дарж шүүлт хийнэ
+4. **PDF постер** - Айл дээр дарж "📄 Постер үүсгэх" товчлуур дарна
 
-## Getting Started
+## 🎨 Дэлгэцийн зураг
 
-The [Getting Started](https://vaadin.com/docs/latest/getting-started) guide will quickly familiarize you with your new
-Shimegch implementation. You'll learn how to set up your development environment, understand the project 
-structure, and find resources to help you add muscles to your skeleton — transforming it into a fully-featured 
-application.
+### Үндсэн хуудас
+- Айлуудын жагсаалт
+- Шүүлтүүр modal
+- Responsive table
+
+### PDF постер
+- Айлын мэдээлэл
+- Өрийн хэмжээ
+- Meme зураг
+- Монгол бичиг дэмжлэг
+
+## 🤝 Хувь нэмэр оруулах
+
+1. Repository fork хийх
+2. Feature branch үүсгэх
+3. Өөрчлөлт хийх
+4. Pull request илгээх
+
+## 📄 License
+
+MIT License - дэлгэрэнгүйг LICENSE файлаас харна уу.
+
+## 📞 Холбоо барих
+
+Асуулт, санал байвал GitHub Issues дээр бичнэ үү.
+
+---
+Made with ❤️ for Mongolian communities
